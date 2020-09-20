@@ -16,28 +16,28 @@ public:
         this->max = max;
         data = new string[this->max];
         first = 0;
-        last = -1;
+        last = 0;
         count = 0;
     }
 
     void Add(string num)
     {
-        if (last == max - 1)
+        if (count == max)
         {
-            cout << "Очередь заполнена, начало заполнения новой очереди";
-            last = -1;
+            cout << "Очередь заполнена, начало заполнения новой очереди\n";
+            last = 0;
             count = 0;
         }
-        data[++last] = num;
+        data[last] = num;
         count++;
-      //  cout << "COUNT: " << count;
+        cout << "Добавлен элемент: " << num << endl;
     }
 
     void Delete()
     {
         if (count == 0)
         {
-            cout << "Очередь пуста";
+            cout << "Очередь пуста\n";
             return;
         }
         else
@@ -46,8 +46,7 @@ public:
             if (first == max)
                 first = 0;
             count--;
-           // cout << "COUNT: " << count;
-            cout << "Удален элемент: " << temp;
+            cout << "Удален элемент: " << temp << endl;
         }
     }
 
@@ -61,12 +60,10 @@ public:
         if (count == 0)
         {
             cout << "Очередь пуста\n";
-        //    return true;
         }
         else
         {
             cout << "Очередь не пуста\n";
-         //  return false;
         }
     }
 
@@ -82,7 +79,7 @@ public:
 int main()
 {
     setlocale(0, "");
-    int N, dig;
+    int N, digit;
     string name;
     cout << "Введите размер очереди: ";
     cin >> N;
@@ -92,10 +89,10 @@ int main()
 
     do
     {
-        cin >> dig;
-        if (dig)
+        cin >> digit;
+        if (digit)
         {
-            switch (dig)
+            switch (digit)
             {
             case 1:
                 cin >> name;
@@ -105,7 +102,7 @@ int main()
                 q.Delete();
                 break;
             case 3:
-              cout <<"Первый элемент: " << q.GetFirst();
+              cout <<"Первый элемент: " << q.GetFirst() << endl;
               break;
             case 4:
                 q.IsEmpty();
@@ -119,6 +116,6 @@ int main()
         }
         cout << endl;
     }
-    while (dig);
+    while (digit);
     return 0;
 }
